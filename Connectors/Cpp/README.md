@@ -24,6 +24,7 @@ In a second shell run:
 ```shell
 ./bin/zmq-client
 ```
+You should see values updating in both shells.
 
 ## ZMQ server with DataBroker and Simulink
 To run the simple Python example using the zmq-srv instead of the ZMQ python script, ensure input.json is in co-sim mode and using Simulink as the executable.
@@ -48,7 +49,7 @@ To run the simple Python example using the zmq-srv instead of the ZMQ python scr
 
 Next, follow the simple example to load the Simulink model. Instead of running the Python program, execute the following from a shell in the Cpp directory:
 ```shell
-./bin/zmq-shell
+./bin/zmq-srv
 ```
 Finally, start the Simulink simulation.  You should see the values update the same way they updated in the Python example.
 
