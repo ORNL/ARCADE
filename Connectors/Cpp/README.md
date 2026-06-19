@@ -18,7 +18,7 @@ In the following examples, all commands are run from the ARCADE/Connectors/Cpp d
 ## Simple client / server test
 Open a terminal and run:
 ```shell
-./bin/zmq-serv
+./bin/zmq-srv
 ```
 In a second shell run:
 ```shell
