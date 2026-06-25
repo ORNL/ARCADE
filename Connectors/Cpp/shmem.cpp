@@ -73,6 +73,7 @@ static void process_update() {
     sem_t *semu;
     sem_t *semp;
 
+    /* set up semaphores for flow control*/
     semu = sem_open(UPDATE_POINTS_SHM_SEM, 0);
     if (semu == SEM_FAILED) {
         std::cout << "Failed to open semaphore for update points." << std::endl;
@@ -108,17 +109,21 @@ static void process_update() {
     return;
     }  
        
+    /* wait for update semaphore*/
     sem_wait(semu);
         
-    double val1 = updatePointsShmAddress[0].Value * updatePointsShmAddress[1].Value;;
-    double val2 = updatePointsShmAddress[0].Value * updatePointsShmAddress[0].Value;;
+    /* get values from data broker and calc output values */
+    double val1 = updatePointsShmAddress[0].Value * updatePointsShmAddress[1].Value;
+    double val2 = updatePointsShmAddress[0].Value + updatePointsShmAddress[1].Value;
 
+    /* publish values*/
     publishPointsShmAddress[0].Value = val1;
     publishPointsShmAddress[1].Value = val2;
         
     shmdt(publishPointsShmAddress);
     shmdt(updatePointsShmAddress);
     
+    /* update point semaphore */
     sem_post(semp);
 }
 

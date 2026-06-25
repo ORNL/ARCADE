@@ -6,6 +6,8 @@ Modules:
 - zmq-client - Opens a ZMQ client that connects to zmq-srv. This is primarily used for testing/debugging
 - shmem - Interfaces with the DB using shared memory. Can connect to ZMQ server isntead of Simulink to mimic the simple round-trip example
 
+Note: zmq-srv and zmq-client require cppzmq (libzmq3-dev on Ubuntu systems).
+
 To compile:
 ```shell 
 g++ zmq-srv.cpp -lzmq -o bin/zmq-srv
@@ -125,4 +127,4 @@ In a second shell, start the zmq-server using the following command:
 ./bin/zmq-srv
 ```
 
-You should then see the output of both the zmq-serv and DB windows update with values.
+You should then see the output of both the zmq-srv and DB windows update with values.
